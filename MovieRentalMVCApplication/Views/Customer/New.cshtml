@@ -1,0 +1,49 @@
+﻿@*@model MovieRentalMVCApplication.Models.Customer*@
+@model MovieRentalMVCApplication.ViewModels.NewCustomerViewModel
+@{
+    ViewBag.Title = "Enter Details";
+}
+
+<h2>New</h2>
+@using (Html.BeginForm("Save", "Customer"))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.CustName)
+    @Html.TextBoxFor(m => m.Customer.CustName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Customer.CustName)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.Dob)
+    @Html.TextBoxFor(m => m.Customer.Dob, "{0:dd MMM yyyy}", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Customer.Dob)
+</div>
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.IsSubscribedToNewsLater)
+            @Html.CheckBoxFor(m => m.IsSubscribedToNewsLater, new { @class = "form-control" })
+        </div>*@
+
+  
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId,
+            new SelectList(Model.MembershipTypes, "Id", "Membership_Name"),
+            "Select Membership Name",
+            new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
+    </div>
+
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLater)
+            Subscribed To News Letter?
+        </label>
+    </div>
+    @Html.HiddenFor(m=>m.Customer.Id)
+    @Html.AntiForgeryToken()
+    <button class="btn btn-primary" type="submit">Save</button>
+        }
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }

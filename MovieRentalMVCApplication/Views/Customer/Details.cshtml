@@ -1,0 +1,23 @@
+﻿@model MovieRentalMVCApplication.Models.Customer
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Customer Id</th>
+        <th>Customer Name</th>
+        <th>DOB</th>
+        <th>IsSubscribedToNewsLater</th>
+        <th>MembershipId</th>
+    </tr>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.CustName</td>
+        <td>@Model.Dob.ToLongDateString()</td>
+        <td>@Model.IsSubscribedToNewsLater</td>
+        <td>@Model.MembershipTypeId</td>
+    </tr>
+</table>
